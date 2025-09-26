@@ -3,7 +3,7 @@ import random
 import pygame
 from pygame import Vector2
 
-# --------- НАЛАШТУВАННЯ ----------
+
 WIDTH, HEIGHT = 1000, 700
 BG_COLOR = (18, 18, 20)
 GLASS_COLOR = (200, 230, 255, 80)  # rgba-like
@@ -11,7 +11,7 @@ SHARD_BORDER = (30, 40, 50)
 CRACK_COLOR = (40, 50, 60)
 FPS = 60
 
-# Параметри розбиття
+
 MIN_CRACKS = 18
 MAX_CRACKS = 40
 RADIUS_MEAN = 220
@@ -22,7 +22,7 @@ ANGULAR_SPREAD = 6.0
 GRAVITY = Vector2(0, 200)
 AIR_DRAG = 0.995
 GROUND_FRICTION = 0.82
-# ---------------------------------
+
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -127,7 +127,7 @@ class Shard:
             pygame.draw.polygon(surf, SHARD_BORDER, pts, 1)
 
 shards = []
-crack_lines = []  # накопичуємо всі тріщини
+crack_lines = [] 
 
 def create_shatter_at(pos, power=1.0):
     cx, cy = pos.x, pos.y
@@ -183,7 +183,7 @@ def create_shatter_at(pos, power=1.0):
             s.vel.y -= random.uniform(0, 120)
         shards.append(s)
 
-    # тепер додаємо тріщини, не перезаписуючи старі
+
     crack_count = int(n * 0.9)
     new_lines = []
     for i in range(crack_count):
@@ -196,7 +196,7 @@ def create_shatter_at(pos, power=1.0):
             bl = l * random.uniform(0.35, 0.65)
             bend = (cx + math.cos(branch_ang) * bl, cy + math.sin(branch_ang) * bl)
             new_lines.append((end, bend))
-    crack_lines.extend(new_lines)  # додаємо до існуючих
+    crack_lines.extend(new_lines)  
 
 def draw_cracks(surface):
     for (s, e) in crack_lines:
@@ -214,7 +214,7 @@ def clean_stopped_shards():
     global shards
     new = []
     for s in shards:
-        if s.pos.y < HEIGHT + 200:  # прибираємо тільки уламки далеко за межами екрана
+        if s.pos.y < HEIGHT + 200:  
             new.append(s)
     shards = new
 
@@ -253,3 +253,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
